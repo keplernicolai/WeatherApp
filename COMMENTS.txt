@@ -1,0 +1,14 @@
+- Padrão utilizado foi o MVVM, por deixar o código mais limpo, facilidade em usar
+Data Binding, desacoplamento, injeção de dependência (não usei desta vez) e etc.
+
+- Bibliotecas de terceiros usadas são:
+   * Acr.UserDialogs - Facilita notificações com mensagens e carregamentos de tela.
+   * Newtonsoft - Usado para serializar e deserializar objetos json e etc.
+   * Realm - Banco de dados NoSQL, possui maior velocidade para persistir dados, implementação mais simples que o SqLite
+e é possível salvar como document.
+
+- Poderia melhorar o layout das telas, remover a cor do select item da listview, mensagens de sucesso,
+ nome de variáveis, nome de métodos e de atributos.
+
+- A api consumida não enviou imagem para que pudesse ser colocada na tela de detalhes do clima, 
+portanto, coloquei uma imagem fixa.

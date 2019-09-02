@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="StefaniniTeste.MainPage"
+             Title="Clima">
+
+    <ContentPage.Content>
+
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Row="0" Grid.Column="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <ListView ItemsSource="{Binding CidadesFavoritas}" SelectedItem="{Binding CidadeSelecionada, Mode=TwoWay}" HasUnevenRows="True" 
+                          SeparatorVisibility="Default" Grid.Row="0" Grid.Column="0" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal" Spacing="3">
+                                            <Label Text="Cidade:" FontSize="Medium" />
+                                            <Label Text="{Binding NomeCidade}" FontSize="Medium" />
+                                        </StackLayout>
+                                        
+                                        <StackLayout Orientation="Horizontal" Spacing="3">
+                                            <Label Text="Clima:" FontSize="Medium" />
+                                            <Label Text="{Binding StatusClima}" FontSize="Medium" />
+                                        </StackLayout>
+                                        
+                                        <StackLayout Orientation="Horizontal" Spacing="3">
+                                            <Label Text="Temp.:" FontSize="Medium" />
+                                            <Label Text="{Binding Temperatura, StringFormat='{0:N0}°C'}" FontSize="Medium" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <ImageButton Source="search.png" Aspect="AspectFit" Grid.Column="0" Grid.Row="0" VerticalOptions="End" HorizontalOptions="End" 
+                         HeightRequest="60" WidthRequest="60" Margin="15" IsVisible="True" Command="{Binding ProcurarCidadeCommand}" BackgroundColor="Transparent"/>
+           
+        </Grid>
+
+    </ContentPage.Content>
+
+</ContentPage>

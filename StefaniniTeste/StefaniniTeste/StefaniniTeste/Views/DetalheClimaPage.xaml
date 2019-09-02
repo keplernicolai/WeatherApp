@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="StefaniniTeste.Views.DetalheClimaPage"
+             Title="Detalhes">
+
+    <ContentPage.Content>
+
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ScrollView>
+                <Grid Grid.Row="0" Grid.Column="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="{Binding CidadeFavorita.NomeCidade}" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="End"
+                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+                    <Label Text="{Binding CidadeFavorita.Temperatura, StringFormat='{0:N0}°C'}" FontSize="35" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Grid.Row="1" Grid.Column="0"/>
+
+                    <StackLayout Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image Source="{Binding CidadeFavorita.Icone}" Aspect="AspectFit"/>
+                        <Label Text="{Binding CidadeFavorita.StatusClima}" FontSize="Medium" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                        <StackLayout Orientation="Horizontal" Spacing="3">
+                            <Label Text="Temperatura Min.:" FontSize="Medium" FontAttributes="Bold"/>
+                            <Label Text="{Binding CidadeFavorita.TemperaturaMinima, StringFormat='{0:N0}°C'}" FontSize="Medium" />
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" Spacing="3">
+                            <Label Text="Temperatura Max.:" FontSize="Medium" FontAttributes="Bold"/>
+                            <Label Text="{Binding CidadeFavorita.TemperaturaMaxima, StringFormat='{0:N0}°C'}" FontSize="Medium" />
+                        </StackLayout>
+                    </StackLayout>
+
+                </Grid>
+            </ScrollView>
+
+            <ImageButton x:Name="btnFavoritado" Source="favoritado.png" Aspect="AspectFit" Grid.Column="0" Grid.Row="0" VerticalOptions="End" HorizontalOptions="End" 
+                         HeightRequest="60" WidthRequest="60" Margin="15" IsVisible="{Binding IsFavoritado}" Command="{Binding RemoverFavoritoCommand}" BackgroundColor="Transparent"/>
+
+            <ImageButton Source="favoritar.png" Aspect="AspectFit" Grid.Column="0" Grid.Row="0" VerticalOptions="End" HorizontalOptions="End" BackgroundColor="Transparent"
+                         HeightRequest="60" WidthRequest="60" Margin="15" Command="{Binding FavoritarCommand}">
+                <ImageButton.Triggers>
+                    <DataTrigger TargetType="ImageButton" Binding="{Binding Source={x:Reference btnFavoritado}, Path=IsVisible}" Value="True">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </ImageButton.Triggers>
+            </ImageButton>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
